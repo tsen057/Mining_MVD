@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block content %}
+<div>
+    <h1>Results</h1>
+    <h2>Top-Down MVD Tree:</h2>
+    <pre>{{ top_down_result }}</pre>
+    <pre>Processing time for top down algorithm: {{ top_down_time }} seconds</pre>
+    <h2>Bottom-Up MVD Tree:</h2>
+    <pre>{{ bottom_up_result }}</pre>
+    <pre>Processing time for bottom up algorithm: {{ bottom_up_time }} seconds</pre>
+    <br />
+    <a href="/">Upload another file</a>
+</div>
+{% endblock %}

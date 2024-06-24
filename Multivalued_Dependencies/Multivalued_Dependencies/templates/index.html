@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<br />
+<div class="jumbotron">
+    <p class="lead">Multivalued dependencies are fundamental to relational database design. While mining of functional dependencies are studied extensively there is little research when it comes to MVDs. Here we have implemented two algorithms top-down and bottom-up for mining MVDs. The project allows user to add CSV file data to implement the algorithms.</p>
+</div>
+<div class="row" style="margin-left:10px">
+    <form action="/index" method="post" enctype="multipart/form-data" class="form-inline">
+        <div class="form-group">
+            <input type="file" class="form-control" name="file" required accept=".csv">
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Upload">
+            
+        </div>
+        <div class="form-group">
+            <span id="fileError" style="color: red; display: none;">Please upload a .csv file.</span>
+        </div>
+    </form>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var fileInput = document.querySelector('input[type="file"]');
+        var fileError = document.getElementById('fileError');
+
+        if (fileInput) {
+            fileInput.onchange = function () {
+                var filePath = fileInput.value;
+                var allowedExtensions = /(\.csv)$/i;
+                if (!allowedExtensions.exec(filePath)) {
+                    fileError.style.display = 'block';
+                    fileInput.value = ''; 
+                } else {
+                    fileError.style.display = 'none';
+                }
+            };
+        } else {
+            console.log('File input is null');
+        }
+    });
+</script>
+{% endblock %}
